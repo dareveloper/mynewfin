@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>Admin Portal</h1>
+        <a href="/">Home</a>
+        <a href="/admin">Admin</a>
+        <a href="/forum">Forum</a>
+    </div>
+
+    <div class="admin-form">
+        <h2>Edit Posts</h2>
+        <form method="POST">
+            {% for post in posts %}
+                <div class="post-edit">
+                    <label for="title{{ loop.index0 }}">Title:</label>
+                    <input type="text" name="title{{ loop.index0 }}" value="{{ post['title'] }}" required>
+                    
+                    <label for="image{{ loop.index0 }}">Image URL:</label>
+                    <input type="url" name="image{{ loop.index0 }}" value="{{ post['image'] }}" required>
+                    
+                    <label for="description{{ loop.index0 }}">Description:</label>
+                    <textarea name="description{{ loop.index0 }}" required>{{ post['description'] }}</textarea>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn">Update Posts</button>
+        </form>
+    </div>
+
+</body>
+</html>

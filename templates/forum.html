@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>Finance Blog</h1>
+        <a href="/">Home</a>
+        <a href="/admin">Admin</a>
+        <a href="/forum">Forum</a>
+    </div>
+
+    <div class="forum-container">
+        <h2>Forum</h2>
+        
+        <form method="POST">
+            <textarea name="comment" placeholder="Write your comment..." required></textarea>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+
+        <div class="comments">
+            <h3>Comments</h3>
+            {% for comment in comments %}
+                <div class="comment">
+                    <p>{{ comment }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>
